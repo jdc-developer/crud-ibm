@@ -1,5 +1,6 @@
 package com.ibm.dto;
 
+import com.ibm.domain.enums.PlanetType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,12 @@ public class PlanetDTO {
 
     private Integer id;
     private String name;
-    private Integer planetType;
+    private String planetType;
     private Double mass;
     private Double circumference;
+
+    public void setPlanetType(PlanetType planetType) {
+        this.planetType = planetType.getDescription();
+    }
 
 }
