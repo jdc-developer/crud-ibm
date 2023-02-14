@@ -16,7 +16,7 @@ public class PlanetDTO {
     private String name;
     private String planetType;
     private Double mass;
-    private Double circumference;
+    private Integer circumference;
 
     public void setPlanetType(PlanetType planetType) {
         this.planetType = planetType.getDescription();

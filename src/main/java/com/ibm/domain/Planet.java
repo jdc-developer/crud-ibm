@@ -25,7 +25,7 @@ public class Planet {
     private String name;
     private Integer planetType;
     private Double mass;
-    private Double circumference;
+    private Integer circumference;
 
     public PlanetType getPlanetType() {
         return PlanetType.toEnum(planetType);

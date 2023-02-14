@@ -14,5 +14,5 @@ public class PlanetCreateDTO {
     private String name;
     private Integer planetType;
     private Double mass;
-    private Double circumference;
+    private Integer circumference;
 }
