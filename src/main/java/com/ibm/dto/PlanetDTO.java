@@ -15,7 +15,7 @@ public class PlanetDTO {
     private Integer id;
     private String name;
     private String planetType;
-    private Double mass;
+    private Long mass;
     private Integer circumference;
 
     public void setPlanetType(PlanetType planetType) {

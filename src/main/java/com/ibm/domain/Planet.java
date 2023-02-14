@@ -24,7 +24,7 @@ public class Planet {
     private Integer id;
     private String name;
     private Integer planetType;
-    private Double mass;
+    private Long mass;
     private Integer circumference;
 
     public PlanetType getPlanetType() {

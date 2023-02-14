@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/planets")
 public class PlanetController {
@@ -28,21 +30,21 @@ public class PlanetController {
     }
 
     @PostMapping
-    public ResponseEntity<PlanetDTO> create(@RequestBody PlanetCreateDTO planetCreateDTO) {
+    public ResponseEntity<PlanetDTO> create(@Valid @RequestBody PlanetCreateDTO planetCreateDTO) {
         return ResponseEntity.ok(modelMapper.map(planetService.create(planetCreateDTO), PlanetDTO.class));
     }
 
     @PutMapping
-    public ResponseEntity<PlanetDTO> update(@RequestBody PlanetUpdateDTO planetUpdateDTO) {
+    public ResponseEntity<PlanetDTO> update(@Valid @RequestBody PlanetUpdateDTO planetUpdateDTO) {
         return ResponseEntity.ok(modelMapper.map(planetService.update(planetUpdateDTO), PlanetDTO.class));
     }
 
     @GetMapping()
     public ResponseEntity<Page<PlanetDTO>> find(@RequestParam(value = "page", defaultValue = "0") Integer page,
-                                                @RequestParam(value="linesPerPage", defaultValue="10") Integer linesPerPage,
-                                                @RequestParam(value="orderBy", defaultValue="id") String orderBy,
-                                                @RequestParam(value="direction", defaultValue="DESC") String direction,
-                                                @RequestParam(value="name", defaultValue="") String name) {
+            @RequestParam(value="linesPerPage", defaultValue="10") Integer linesPerPage,
+            @RequestParam(value="orderBy", defaultValue="id") String orderBy,
+            @RequestParam(value="direction", defaultValue="DESC") String direction,
+            @RequestParam(value="name", defaultValue="") String name) {
         return ResponseEntity.ok(planetService.find(page, linesPerPage, orderBy, direction, name));
     }
 
