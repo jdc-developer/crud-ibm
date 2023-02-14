@@ -6,11 +6,11 @@ import com.ibm.dto.PlanetCreateDTO;
 import com.ibm.dto.PlanetUpdateDTO;
 import com.ibm.repository.PlanetRepository;
 import com.ibm.services.PlanetService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +20,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class PlanetServiceTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(PlanetServiceTest.class);
@@ -35,14 +36,14 @@ public class PlanetServiceTest {
 
     private PlanetService planetService;
 
-    @Before
+    @BeforeEach
     public void initialize() {
         planetService = new PlanetService(planetRepository, modelMapper);
 
         Planet planet = new Planet(1, "Earth", PlanetType.TERRESTRIAL.getCode(), 59722 * Math.pow(10, 24), 40075);
-        when(planetRepository.save(any(Planet.class))).thenReturn(planet);
+        lenient().when(planetRepository.save(any(Planet.class))).thenReturn(planet);
 
-        when(planetRepository.findById(any(Integer.class))).thenReturn(Optional.of(planet));
+        lenient().when(planetRepository.findById(any(Integer.class))).thenReturn(Optional.of(planet));
     }
 
     @Test
